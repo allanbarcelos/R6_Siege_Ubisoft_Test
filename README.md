@@ -13,6 +13,7 @@ The test aims to evaluate the ability to process large volumes of data, optimizi
 |  First commit, Read, Understand and Start Coding | 2024-09-25 2:00PM |
 |  Second commit, Read, Understanding Process      | 2024-09-25 2:30PM |
 |  Fake data script                                | 2024-09-25 3:00PM |
+|  Main Objective complete Top 100 Operators       | 2024-09-25 4:15PM |
 
 # Understanding Process
 
@@ -121,9 +122,58 @@ I created (optionally) a script to generate simulated data. To run your syntheti
   - A log file will be generated in the format `r6-matches-YYYYMMDD.log`, where `YYYYMMDD` is the current date. This file will contain the generated synthetic data
 
 
+### Quick Guide for Running < R6_Siege_Top100_Operators.py >
 
+#### If you check the script < > you will see that some functions are commented because I used them to test some strategies, I decided to leave them to make it easier to understand my progress.
 
+#### I did some tests using Dask for reading but decided to keep Pandas as it was more common.
+  - Dask is a good choice for operations that don't fit in memory, this could be a point for improvement if strictly necessary.
 
+#### Prerequisites
+1. **Python Environment**: Ensure you have Python 3.7 or higher installed on your machine.
+2. **Required Libraries**: Install the necessary libraries using pip:
+   ```bash
+   pip install -r requirements
+   ```
+3. **Log File**: Prepare your log file in CSV format with the following columns:
+   - `player_id` (UUID)
+   - `match_id` (string)
+   - `operator_id` (integer)
+   - `nb_kills` (integer)
+
+#### Script Overview
+This script processes game logs to:
+- Reduce dimensions using PCA.
+- Cluster data using KMeans.
+- Detect anomalies with Isolation Forest.
+- Calculate the top 100 operators based on average kills.
+
+#### How to Run the Script
+
+1. **Run the Script**:
+   Open a terminal and navigate to the directory where the script is located. Execute the script with the following command, providing the path to your log file as an argument:
+   ```bash
+    python R6_Siege_Top100_Operators.py path/to/your/logfile.log
+   ```
+
+2. **Monitor Memory Usage**: The script includes a memory monitoring feature that runs in the background, displaying the current memory usage.
+
+3. **Output**: Upon successful execution, the script generates a file named `operator_top100_<date>.txt`, containing the top 100 operators and their average kills across matches.
+
+#### Example Usage
+Assuming your log file is named `game_logs.log`, run:
+```bash
+python R6_Siege_Top100_Operators.py game_logs.log
+```
+
+#### Important Notes
+- Ensure your log file is structured correctly as described.
+- The script processes data in parallel to improve performance.
+- Adjust the `num_workers` parameter in the `process_data_in_parallel` function if you wish to change the number of parallel processes used.
+
+#### Troubleshooting
+- If you encounter an error related to file paths, double-check the path you provided.
+- If memory usage exceeds system limits, consider reducing the chunk size in the `read_data_from_file` function.
 
 
 
