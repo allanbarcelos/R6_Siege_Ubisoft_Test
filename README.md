@@ -12,7 +12,7 @@ The test aims to evaluate the ability to process large volumes of data, optimizi
 |:-------------------------------------------------|:-----------------:|
 |  First commit, Read, Understand and Start Coding | 2024-09-25 2:00PM |
 |  Second commit, Read, Understanding Process      | 2024-09-25 2:30PM |
-
+|  Fake data script                                | 2024-09-25 3:00PM |
 
 # Understanding Process
 
@@ -106,3 +106,54 @@ pip freeze > requirements.txt
   ```
 
 - Always remember to activate the virtual environment before working on the project or running scripts to avoid conflicts with global packages.
+
+# Generate Fake DATA (To test)
+
+I created (optionally) a script to generate simulated data. To run your synthetic data generation script for Rainbow Six Siege matches, you can follow this step-by-step guide. 
+
+  ```bash
+  python generate_r6_data.py --num_matches 1000000 --num_workers 4
+  ```
+- **Parameters**:
+  - `--num_matches`: (optional) Defines the number of matches to be generated. The default value is `1000000`.
+  - `--num_workers`: (optional) Sets the number of parallel processes to be used. The default value is `4`.
+- **Parameters**: After executing the script:
+  - A log file will be generated in the format `r6-matches-YYYYMMDD.log`, where `YYYYMMDD` is the current date. This file will contain the generated synthetic data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
